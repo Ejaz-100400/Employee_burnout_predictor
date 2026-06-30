@@ -406,7 +406,7 @@ const DEFAULTS = {
   seeks_professional_help: 0,
 };
 
-const API_URL = "https://employee-burnout-predictor-ov77.onrender.com";
+const API_URL = "https://employee-burnout-predictor-ov77.onrender.com"
 
 export default function App() {
   const [form, setForm] = useState(DEFAULTS);
