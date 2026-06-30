@@ -9,7 +9,7 @@ app = FastAPI(title="Burnout Predictor API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://your-frontend-name.vercel.app", "http://localhost:5173"],  # keep for local dev 
+    allow_origins=["https://employee-burnout-predictor-gold.vercel.app/", "http://localhost:5173"],  # keep for local dev 
     allow_methods=["*"],
     allow_headers=["*"],
 )
