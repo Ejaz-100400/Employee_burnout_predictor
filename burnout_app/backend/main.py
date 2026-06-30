@@ -9,10 +9,7 @@ app = FastAPI(title="Burnout Predictor API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://your-frontend-name.vercel.app",
-        "http://localhost:5173"  # keep for local dev
-    ],
+    allow_origins=["https://your-frontend-name.vercel.app", "http://localhost:5173"],  # keep for local dev 
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -198,7 +195,7 @@ def predict(data: PredictRequest):
     X = preprocess(data)
     pred = model.predict(X)[0]
     proba = model.predict_proba(X)[0]
-    classes = model.classes_
+    classes = model.classes_  # numeric codes, e.g. [0, 1, 2]
 
     # Map numeric class codes back to their string labels
     # 0 -> High, 1 -> Low, 2 -> Moderate (from LabelEncoder.classes_)
