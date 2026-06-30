@@ -200,10 +200,16 @@ def predict(data: PredictRequest):
     proba = model.predict_proba(X)[0]
     classes = model.classes_
 
-    proba_dict = {str(cls): round(float(p) * 100, 1) for cls, p in zip(classes, proba)}
+    # Map numeric class codes back to their string labels
+    # 0 -> High, 1 -> Low, 2 -> Moderate (from LabelEncoder.classes_)
+    CODE_TO_LABEL = {0: "High", 1: "Low", 2: "Moderate"}
 
-    label_map = {"Low": "Low", "Moderate": "Moderate", "High": "High"}
-    label = label_map.get(str(pred), str(pred))
+    proba_dict = {
+        CODE_TO_LABEL.get(int(cls), str(cls)): round(float(p) * 100, 1)
+        for cls, p in zip(classes, proba)
+    }
+
+    label = CODE_TO_LABEL.get(int(pred), str(pred))
 
     return {
         "prediction": label,
